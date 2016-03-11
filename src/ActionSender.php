@@ -19,10 +19,7 @@ class ActionSender
 
 
    //custom functions 
-      public function coreShowChannels()
-    {
-        return $this->request('CoreShowChannels');
-    }
+   
   public function timeout($channel, $cause)
     {
         return $this->request('AbsoluteTimeout', array('Channel' => $channel, 'Timeout' => $cause));
