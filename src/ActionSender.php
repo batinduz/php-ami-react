@@ -17,6 +17,23 @@ class ActionSender
         $this->client = $client;
     }
 
+
+   //custom functions 
+      public function coreShowChannels()
+    {
+        return $this->request('CoreShowChannels');
+    }
+  public function timeout($channel, $cause)
+    {
+        return $this->request('AbsoluteTimeout', array('Channel' => $channel, 'Timeout' => $cause));
+    }
+    public function getvar($channel, $cause)
+    {
+    return $this->request('GetVar', array('Channel' => $channel, 'Variable' => $cause));
+    }
+
+
+
     public function login($username, $secret, $events = null)
     {
         $events = $this->boolParam($events);
