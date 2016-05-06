@@ -20,6 +20,26 @@ class ActionSender
 
    //custom functions 
    
+ function originate($channel,
+                       $exten=NULL, $context=NULL, $priority=NULL,
+                       $application=NULL, $data=NULL,
+                       $timeout=NULL, $callerid=NULL, $variable=NULL, $account=NULL, $async=NULL, $actionid=NULL)
+    {
+      $parameters = array('Channel'=>$channel);
+      if($exten) $parameters['Exten'] = $exten;
+      if($context) $parameters['Context'] = $context;
+      if($priority) $parameters['Priority'] = $priority;
+      if($application) $parameters['Application'] = $application;
+      if($data) $parameters['Data'] = $data;
+      if($timeout) $parameters['Timeout'] = $timeout;
+      if($callerid) $parameters['CallerID'] = $callerid;
+      if($variable) $parameters['Variable'] = $variable;
+      if($account) $parameters['Account'] = $account;
+      if(!is_null($async)) $parameters['Async'] = ($async) ? 'true' : 'false';
+      if($actionid) $parameters['ActionID'] = $actionid;
+      return $this->request('Originate', $parameters);
+    }
+
   public function timeout($channel, $cause)
     {
         return $this->request('AbsoluteTimeout', array('Channel' => $channel, 'Timeout' => $cause));
