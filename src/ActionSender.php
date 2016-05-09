@@ -20,7 +20,11 @@ class ActionSender
 
    //custom functions 
    
- function originate($channel,
+    public function setVar($channel, $variable, $value)
+    {
+        return $this->request('Setvar', ['Channel' => $channel, 'Variable' => $variable, 'Value' => $value]);
+    }
+ public function originate($channel,
                        $exten=NULL, $context=NULL, $priority=NULL,
                        $application=NULL, $data=NULL,
                        $timeout=NULL, $callerid=NULL, $variable=NULL, $account=NULL, $async=NULL, $actionid=NULL)
